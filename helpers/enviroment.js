@@ -1,8 +1,6 @@
 /*
  * Title: Environments
  * Description: Handle all environment related things
- * Author: Sumit Saha ( Learn with Sumit )
- * Date: 11/20/2020
  *
  */
 
