@@ -30,9 +30,7 @@ handler.handleReqRes = (req, res)=>{
        realdata = decoder.write(buffer)
     })
     const chosenHandler =  routes[trimpath] ?  routes[trimpath] : notFoundHandler;
-  
-
-  
+   
     req.on('end', ()=>{
         realdata +=decoder.end();
         chosenHandler(reqProperty, (statustCode,payload)=>{
@@ -45,7 +43,7 @@ handler.handleReqRes = (req, res)=>{
             res.writeHead(statustCode);
             res.end(payloadString);
         });
-        res.end(realdata);
+       // res.end(realdata);
     })
 }
 module.exports = handler;
