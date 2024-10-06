@@ -9,16 +9,16 @@ const environments = require('./helpers/enviroment')
 const lib = require('./lib/data');
 // app object - module scaffolding
 const app = {}
-lib.create('test','test-muhammad', {name:"muhammad", age:2.5}, (err)=>{
-console.log(err)
-})
+// lib.create('test','test-muhammad', {name:"muhammad", age:2.5}, (err)=>{
+// console.log(err)
+// })
 
-lib.update('test','test-muhammad', {name:"muhammad sona", age:2.5}, (err)=>{
-    console.log(err)
-    })
-lib.delete('test','test-muhammad', (err)=>{
-    console.log(err)
-})
+// lib.update('test','test-muhammad', {name:"muhammad sona", age:2.5}, (err)=>{
+//     console.log(err)
+//     })
+// lib.delete('test','test-muhammad', (err)=>{
+//     console.log(err)
+// })
 //configuration 
 app.config = {};
 
