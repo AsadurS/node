@@ -25,25 +25,25 @@ handler.handleReqRes = (req, res)=>{
         header,
         decoder,
     } 
+    let realdata = '';
+    req.on('data', (buffer)=>{
+       realdata = decoder.write(buffer)
+    })
     const chosenHandler =  routes[trimpath] ?  routes[trimpath] : notFoundHandler;
-    chosenHandler(reqProperty, (statustCode,payload)=>{
+   
+    req.on('end', ()=>{
+        realdata +=decoder.end();
+        chosenHandler(reqProperty, (statustCode,payload)=>{
 
-        statustCode = typeof statustCode === 'number'? statustCode : 500;
-        payload = typeof payload ? payload : {};
-       
-        const payloadString  = JSON.stringify(payload);
-        console.log(35)
-        res.writeHead(statustCode);
-        res.end(payloadString);
-    });
-
-    // let realdata = '';
-    // req.on('data', (buffer)=>{
-    //    realdata = decoder.write(buffer)
-    // })
-    // req.on('end', ()=>{
-    //     realdata +=decoder.end();
-    //     res.end(realdata);
-    // })
+            statustCode = typeof statustCode === 'number'? statustCode : 500;
+            payload = typeof payload ? payload : {};
+           
+            const payloadString  = JSON.stringify(payload);
+            res.setHeader('Content-type', 'application/json')
+            res.writeHead(statustCode);
+            res.end(payloadString);
+        });
+       // res.end(realdata);
+    })
 }
 module.exports = handler;
